@@ -21,7 +21,12 @@
         <plugin type="caojx.learn.plugin.MapperPlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="caojx.learn.mapper"/>
-            <!--     <property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
+            <property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>
+            <!--
+            使用 mybatis-plus 请在pom.xml取消注释mybatis-plus-boot-starter依赖
+            <property name="daoSuperClass" value="import com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
+            -->
+
             <!--Mapper扩展名-->
             <property name="daoSuffix" value="Mapper"/>
             <!--是否生成getter和setter-->
