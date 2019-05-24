@@ -24,14 +24,14 @@ import java.util.List;
 public class StartUp {
     public static void main(String[] args) {
         try {
-            System.out.println("--------------------start mybatis-generator-bkjk-------------------");
+            System.out.println("--------------------start mybatis-generator-demo-------------------");
             List<String> warnings = new ArrayList<String>();
             ConfigurationParser cp = new ConfigurationParser(warnings);
             Configuration config = cp.parseConfiguration(Thread.currentThread().getContextClassLoader().getResourceAsStream("generatorConfig.xml"));
             DefaultShellCallback callback = new DefaultShellCallback(true);
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
             myBatisGenerator.generate(null);
-            System.out.println("--------------------end mybatis-generator-bkjk-------------------");
+            System.out.println("--------------------end mybatis-generator-demo-------------------");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
