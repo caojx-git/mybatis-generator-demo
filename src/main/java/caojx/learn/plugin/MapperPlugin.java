@@ -103,8 +103,8 @@ public class MapperPlugin extends FalseMethodPlugin {
 
             GeneratedJavaFile mapperJavafile = null;
 
-            if (shortName.endsWith("Mapper")) {
-                Interface mapperInterface = new Interface(daoTargetPackage + "." + shortName);
+            if (!shortName.endsWith("Mapper")) {
+                Interface mapperInterface = new Interface(daoTargetPackage + "." + shortName + daoSuffix);
                 shortName = mapperInterface.getType().getShortName();
 
 //                /**
@@ -135,10 +135,28 @@ public class MapperPlugin extends FalseMethodPlugin {
                     mapperInterface.addImportedType(baseModelJavaType);
                     mapperInterface.addImportedType(daoSuperType);
                     mapperInterface.addSuperInterface(daoSuperType);
+                    ReflectConvertHelper.fieldCopyIgnoreHasValueTargeProperties(javaFile.getCompilationUnit(), mapperInterface);
                 }
-                ReflectConvertHelper.fieldCopyIgnoreHasValueTargeProperties(javaFile.getCompilationUnit(), mapperInterface);
-                mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir,javaFormatter);
+                mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir, javaFormatter);
                 mapperJavaFiles.add(mapperJavafile);
+            } else if (shortName.endsWith("Mapper")) {
+                if (StringUtils.isEmpty(daoSuperClass)) {
+                    Interface mapperInterface = new Interface(daoTargetPackage + "." + shortName);
+
+                    //给Mapper添加文档注释
+                    mapperInterface.setVisibility(JavaVisibility.PUBLIC);
+                    mapperInterface.addJavaDocLine("/**");
+                    mapperInterface.addJavaDocLine(" * " + remark);
+                    mapperInterface.addJavaDocLine(" * ");
+                    mapperInterface.addJavaDocLine(" * @author " + author);
+                    mapperInterface.addJavaDocLine(" * @version \\$Id: " + shortName + ".java,v 1.0 " + sdf1.format(new Date()) + " " + author);
+                    mapperInterface.addJavaDocLine(" * @date " + sdf1.format(new Date()));
+                    mapperInterface.addJavaDocLine(" */");
+
+                    ReflectConvertHelper.fieldCopyIgnoreHasValueTargeProperties(javaFile.getCompilationUnit(), mapperInterface);
+                    mapperJavafile = new GeneratedJavaFile(mapperInterface, daoTargetDir, javaFormatter);
+                    mapperJavaFiles.add(mapperJavafile);
+                }
             }
         }
 //        return introspectedTable.getGeneratedJavaFiles();

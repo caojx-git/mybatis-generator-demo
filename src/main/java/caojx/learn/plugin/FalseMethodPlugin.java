@@ -21,11 +21,6 @@ import java.util.List;
  */
 public class FalseMethodPlugin extends PluginAdapter {
 
-    /**
-     * 是否生成getterAndSetter
-     */
-    private boolean generatorGetterAndSetter = false;
-
     @Override
     public boolean validate(List<String> warnings) {
         return true;
