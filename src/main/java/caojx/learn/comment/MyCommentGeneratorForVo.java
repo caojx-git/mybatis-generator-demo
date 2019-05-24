@@ -212,8 +212,17 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
         }
         if (!generatorGetterAndSetter){
             topLevelClass.addAnnotation("@Data");
+            topLevelClass.addAnnotation("@Builder");
+            topLevelClass.addAnnotation("@NoArgsConstructor");
+            topLevelClass.addAnnotation("@AllArgsConstructor");
             FullyQualifiedJavaType fullyQualifiedJavaType1 = new FullyQualifiedJavaType("lombok.Data");
+            FullyQualifiedJavaType fullyQualifiedJavaType2 = new FullyQualifiedJavaType("lombok.Builder");
+            FullyQualifiedJavaType fullyQualifiedJavaType3 = new FullyQualifiedJavaType("lombok.NoArgsConstructor");
+            FullyQualifiedJavaType fullyQualifiedJavaType4 = new FullyQualifiedJavaType("lombok.AllArgsConstructor");
             topLevelClass.addImportedType(fullyQualifiedJavaType1);
+            topLevelClass.addImportedType(fullyQualifiedJavaType2);
+            topLevelClass.addImportedType(fullyQualifiedJavaType3);
+            topLevelClass.addImportedType(fullyQualifiedJavaType4);
         }
         topLevelClass.addAnnotation("@ApiModel(value=\"" + className + "\", description=\"" + description + "\")");
         FullyQualifiedJavaType fullyQualifiedJavaType2 = new FullyQualifiedJavaType("io.swagger.annotations.ApiModel");

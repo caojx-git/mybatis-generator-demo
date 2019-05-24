@@ -250,8 +250,17 @@ public class MyCommentGenerator implements CommentGenerator {
         }
         if (!generatorGetterAndSetter){
             topLevelClass.addAnnotation("@Data");
-            FullyQualifiedJavaType fullyQualifiedJavaType = new FullyQualifiedJavaType("lombok.Data");
-            topLevelClass.addImportedType(fullyQualifiedJavaType);
+            topLevelClass.addAnnotation("@Builder");
+            topLevelClass.addAnnotation("@NoArgsConstructor");
+            topLevelClass.addAnnotation("@AllArgsConstructor");
+            FullyQualifiedJavaType fullyQualifiedJavaType1 = new FullyQualifiedJavaType("lombok.Data");
+            FullyQualifiedJavaType fullyQualifiedJavaType2 = new FullyQualifiedJavaType("lombok.Builder");
+            FullyQualifiedJavaType fullyQualifiedJavaType3 = new FullyQualifiedJavaType("lombok.NoArgsConstructor");
+            FullyQualifiedJavaType fullyQualifiedJavaType4 = new FullyQualifiedJavaType("lombok.AllArgsConstructor");
+            topLevelClass.addImportedType(fullyQualifiedJavaType1);
+            topLevelClass.addImportedType(fullyQualifiedJavaType2);
+            topLevelClass.addImportedType(fullyQualifiedJavaType3);
+            topLevelClass.addImportedType(fullyQualifiedJavaType4);
         }
         FullyQualifiedJavaType fullyQualifiedJavaType2 = new FullyQualifiedJavaType("javax.persistence.*");
         FullyQualifiedJavaType fullyQualifiedJavaType3 = new FullyQualifiedJavaType("java.io.Serializable");
