@@ -21,13 +21,13 @@
         <plugin type="caojx.learn.plugin.MapperPlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="caojx.learn.mapper"/>
-       <!--     <property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
+            <!--     <property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
             <!--Mapper扩展名-->
             <property name="daoSuffix" value="Mapper"/>
             <!--是否生成getter和setter-->
             <property name="generatorGetterAndSetter" value="false"/>
             <!--author-->
-           <!-- <property name="author" value="caojx"/>-->
+            <!-- <property name="author" value="caojx"/>-->
         </plugin>
 
         <!--自定义注释插件-->
@@ -36,7 +36,7 @@
             <!--是否生成getter和setter-->
             <property name="generatorGetterAndSetter" value="false"/>
             <!--author-->
-           <!-- <property name="author" value="caojx"/>-->
+            <!-- <property name="author" value="caojx"/>-->
         </commentGenerator>
 
         <!-- 数据库连接URL，用户名，密码 -->
@@ -61,29 +61,29 @@
 
 
         <!--要生成哪些表 -->
-        <table tableName="active_advisor" enableSelectByExample="false" enableDeleteByExample="false"
+        <table tableName="user_info" enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false">
-           <!-- <property name="rootClass" value="common.BaseEntity"/>-->
+            <!-- <property name="rootClass" value="common.BaseEntity"/>-->
             <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
         </table>
 
 
-<!--         &lt;!&ndash;指定数据库表&ndash;&gt;
-        <table  tableName="area_code" enableSelectByExample="false" enableDeleteByExample="false"
-                enableCountByExample="false" enableUpdateByExample="false"
-                selectByExampleQueryId="false" domainObjectName="AreaCode">
-            <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
-            &lt;!&ndash;设置别名, 不指定的话，按照默认规则&ndash;&gt;
-            <columnOverride column="id" property="Id" />
-            <columnOverride column="province_id" property="provinceId" />
-            <columnOverride column="province_name" property="provinceName" />
-            <columnOverride column="city_id" property="cityId" />
-            <columnOverride column="city_name" property="cityName" />
-            <columnOverride column="district_id" property="districtId" />
-            <columnOverride column="district_name" property="districtName" />
-            <columnOverride column="type" property="type" />
-        </table>-->
+        <!--         &lt;!&ndash;指定数据库表&ndash;&gt;
+                <table  tableName="area_code" enableSelectByExample="false" enableDeleteByExample="false"
+                        enableCountByExample="false" enableUpdateByExample="false"
+                        selectByExampleQueryId="false" domainObjectName="AreaCode">
+                    <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+                    &lt;!&ndash;设置别名, 不指定的话，按照默认规则&ndash;&gt;
+                    <columnOverride column="id" property="Id" />
+                    <columnOverride column="province_id" property="provinceId" />
+                    <columnOverride column="province_name" property="provinceName" />
+                    <columnOverride column="city_id" property="cityId" />
+                    <columnOverride column="city_name" property="cityName" />
+                    <columnOverride column="district_id" property="districtId" />
+                    <columnOverride column="district_name" property="districtName" />
+                    <columnOverride column="type" property="type" />
+                </table>-->
 
     </context>
 </generatorConfiguration>

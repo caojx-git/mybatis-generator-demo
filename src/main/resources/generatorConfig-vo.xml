@@ -28,7 +28,7 @@
         <commentGenerator type="caojx.learn.comment.MyCommentGeneratorForVo">
             <property name="suppressAllComments" value="false"></property>
             <!--author-->
-      <!--      <property name="author" value="caojx"/>-->
+            <!--      <property name="author" value="caojx"/>-->
         </commentGenerator>
 
         <!-- 数据库连接URL，用户名，密码 -->
@@ -44,9 +44,9 @@
             targetProject     指定在该项目下所在的路径
         -->
         <javaModelGenerator targetPackage="caojx.learn.vo" targetProject="src/test/java/">
-<!--
-            <property name="rootClass" value="caojx.learn.pojo.BaseVo"/>
--->
+            <!--
+                        <property name="rootClass" value="caojx.learn.pojo.BaseVo"/>
+            -->
         </javaModelGenerator>
 
         <!--生成哪些表对应的Vo -->
@@ -55,10 +55,10 @@
                selectByExampleQueryId="false">
         </table>
 
-         <!--指定数据库表-->
-<!--        <table  tableName="mov_account_log" enableSelectByExample="false" enableDeleteByExample="false"
-                enableCountByExample="false" enableUpdateByExample="false"
-                selectByExampleQueryId="false">
-        </table>-->
+        <!--指定数据库表-->
+        <!--        <table  tableName="mov_account_log" enableSelectByExample="false" enableDeleteByExample="false"
+                        enableCountByExample="false" enableUpdateByExample="false"
+                        selectByExampleQueryId="false">
+                </table>-->
     </context>
 </generatorConfiguration>
