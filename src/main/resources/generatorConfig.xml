@@ -21,11 +21,12 @@
         <plugin type="caojx.learn.plugin.MapperPlugin">
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="caojx.learn.mapper"/>
-            <property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>
-            <!--
-            使用 mybatis-plus 请在pom.xml取消注释mybatis-plus-boot-starter依赖
-            <property name="daoSuperClass" value="import com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
-            -->
+            <!-- 使用 tk.mybatis 请在pom.xml引入tk.mybatis依赖  -->
+            <!--<property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
+
+            <!-- 使用 mybatis-plus 请在pom.xml引入mybatis-plus-boot-starter依赖  -->
+            <property name="daoSuperClass" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
+
 
             <!--Mapper扩展名-->
             <property name="daoSuffix" value="Mapper"/>
@@ -65,8 +66,8 @@
         <javaClientGenerator targetPackage="caojx.learn.mapper" targetProject="src/test/java" type="XMLMAPPER"/>
 
 
-        <!--要生成哪些表 -->
-        <table tableName="user_info" enableSelectByExample="false" enableDeleteByExample="false"
+        <!--要生成哪些表,tableName支持模糊匹配% -->
+        <table tableName="user" enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false">
             <!-- <property name="rootClass" value="common.BaseEntity"/>-->

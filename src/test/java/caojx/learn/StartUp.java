@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description: 扩展mybatis_generator，执行main方法生成对应代码
+ * 扩展mybatis_generator，执行main方法生成对应代码
  * generatorConfig-vo.xml用于生成 vo
  * generatorConfig.xml用于生成model mapper sqlMapper
+ *
  * @author caojx
- * @date 2018年7月6日
- * @version 1.0
+ * @version $Id: StartUp.java,v 1.0 2019-07-06 11:15 caojx
+ * @date 2019-07-06 11:15
  */
 public class StartUp {
     public static void main(String[] args) {

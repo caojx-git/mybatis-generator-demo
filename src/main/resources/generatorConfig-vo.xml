@@ -19,7 +19,7 @@
             <property name="targetProject" value="src/test/java"/>
             <property name="targetPackage" value="caojx.learn.vo"/>
             <!--Vo扩展名-->
-            <property name="voSuffix" value="Vo"/>
+            <property name="voSuffix" value="VO"/>
             <!--author-->
             <property name="author" value="caojx"/>
         </plugin>
@@ -49,14 +49,14 @@
             -->
         </javaModelGenerator>
 
-        <!--生成哪些表对应的Vo -->
-        <table tableName="orders" enableSelectByExample="false" enableDeleteByExample="false"
+        <!--生成哪些表对应的Vo，tableName支持模糊匹配%  -->
+        <table tableName="user" enableSelectByExample="false" enableDeleteByExample="false"
                enableCountByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId="false">
         </table>
 
         <!--指定数据库表-->
-        <!--        <table  tableName="mov_account_log" enableSelectByExample="false" enableDeleteByExample="false"
+        <!--        <table  tableName="user" enableSelectByExample="false" enableDeleteByExample="false"
                         enableCountByExample="false" enableUpdateByExample="false"
                         selectByExampleQueryId="false">
                 </table>-->

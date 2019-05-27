@@ -203,14 +203,14 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
      */
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        String className = topLevelClass.getType().getShortName() + "Vo对象";
-        String description = introspectedTable.getRemarks();
+        String className = topLevelClass.getType().getShortName() + "VO对象";
+        String description = StringUtils.isEmpty(introspectedTable.getRemarks()) ? "" : introspectedTable.getRemarks() + "VO对象";
 
         boolean generatorGetterAndSetter = Boolean.FALSE;
-        if( !StringUtils.isEmpty(properties.getProperty("generatorGetterAndSetter")) && Boolean.TRUE.equals(Boolean.valueOf(properties.getProperty("generatorGetterAndSetter")))){
+        if (!StringUtils.isEmpty(properties.getProperty("generatorGetterAndSetter")) && Boolean.TRUE.equals(Boolean.valueOf(properties.getProperty("generatorGetterAndSetter")))) {
             generatorGetterAndSetter = Boolean.TRUE;
         }
-        if (!generatorGetterAndSetter){
+        if (!generatorGetterAndSetter) {
             topLevelClass.addAnnotation("@Data");
             topLevelClass.addAnnotation("@Builder");
             topLevelClass.addAnnotation("@NoArgsConstructor");
