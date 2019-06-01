@@ -2,6 +2,8 @@
 
 该项目用于快速生成vo、model、mapper、mapping
 
+github地址：https://github.com/caojx-git/mybatis-generator-demo
+
 ## 一、快速入门
 ### 1.1 caojx.learn.StartUp
 
