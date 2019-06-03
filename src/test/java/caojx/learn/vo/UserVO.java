@@ -8,11 +8,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 类注释，描述
+ * 用户表VO
  * 
  * @author caojx
- * @version \$Id: UserVO.java,v 1.0 2019/05/27 11:23 caojx
- * @date 2019/05/27 11:23
+ * @version \$Id: UserVO.java,v 1.0 2019/06/03 14:27 caojx
+ * @date 2019/06/03 14:27
  */
 @Data
 @Builder
@@ -20,15 +20,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @ApiModel(value="UserVO对象", description="用户表VO对象")
 public class UserVO implements java.io.Serializable {
-    @ApiModelProperty(value = "主键ID", name = "id", required = true)
+    @ApiModelProperty(value = "主键ID", name = "id")
     private Long id;
 
-    @ApiModelProperty(value = "姓名", name = "name", required = true)
+    @ApiModelProperty(value = "姓名", name = "name")
     private String name;
 
-    @ApiModelProperty(value = "年龄", name = "age", required = true)
+    @ApiModelProperty(value = "年龄", name = "age")
     private Integer age;
 
-    @ApiModelProperty(value = "邮箱", name = "email", required = true)
+    @ApiModelProperty(value = "邮箱", name = "email")
     private String email;
+
+    @ApiModelProperty(value = "生日", name = "birthday")
+    private String birthday;
 }

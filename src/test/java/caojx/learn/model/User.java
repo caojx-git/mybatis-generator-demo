@@ -1,5 +1,6 @@
 package caojx.learn.model;
 
+import java.util.Date;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +11,8 @@ import lombok.NoArgsConstructor;
  * 用户表实体
  * 
  * @author caojx
- * @version \$Id: User.java,v 1.0 2019/05/27 11:14 caojx
- * @date 2019/05/27 11:14
+ * @version \$Id: User.java,v 1.0 2019/06/03 14:23 caojx
+ * @date 2019/06/03 14:23
  */
 @Data
 @Builder
@@ -39,4 +40,9 @@ public class User implements java.io.Serializable {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
 }

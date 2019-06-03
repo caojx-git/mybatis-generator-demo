@@ -27,6 +27,8 @@
         <!--自定义注释插件-->
         <commentGenerator type="caojx.learn.comment.MyCommentGeneratorForVo">
             <property name="suppressAllComments" value="false"></property>
+            <!--Vo扩展名-->
+            <property name="voSuffix" value="VO"/>
             <!--author-->
             <!--      <property name="author" value="caojx"/>-->
         </commentGenerator>

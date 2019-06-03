@@ -6,8 +6,9 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, age, email
+    id, name, age, email, birthday
   </sql>
 </mapper>

@@ -4,6 +4,7 @@ import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.internal.util.StringUtility;
+import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class VoPlugin extends FalseMethodPlugin {
 
     /**
      * 验证参数是否有效
+     *
      * @param warnings
      * @return
      */
@@ -43,8 +45,10 @@ public class VoPlugin extends FalseMethodPlugin {
         }
         return true;
     }
+
     /**
      * 生成mapping 添加自定义sql
+     *
      * @param document
      * @param introspectedTable
      * @return
@@ -73,18 +77,22 @@ public class VoPlugin extends FalseMethodPlugin {
 
     /**
      * 给Model添加扩展名
+     *
      * @param topLevelClass
      * @param introspectedTable
      * @return
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        try{
-            FullyQualifiedJavaType fullyQualifiedJavaType =  topLevelClass.getType();
-            java.lang.reflect.Field baseQualifiedNameField =  fullyQualifiedJavaType.getClass().getDeclaredField("baseQualifiedName");
-            java.lang.reflect.Field baseShortNameField =  fullyQualifiedJavaType.getClass().getDeclaredField("baseShortName");
+        try {
+            FullyQualifiedJavaType fullyQualifiedJavaType = topLevelClass.getType();
+            java.lang.reflect.Field baseQualifiedNameField = fullyQualifiedJavaType.getClass().getDeclaredField("baseQualifiedName");
+            java.lang.reflect.Field baseShortNameField = fullyQualifiedJavaType.getClass().getDeclaredField("baseShortName");
             baseQualifiedNameField.setAccessible(true);
             baseShortNameField.setAccessible(true);
+
+            String remark = StringUtils.isEmpty(introspectedTable.getRemarks()) ? "类注释，描述" : introspectedTable.getRemarks() + voSuffix;
+
 
             System.out.println(baseShortNameField.get(fullyQualifiedJavaType));
             System.out.println(baseQualifiedNameField.get(fullyQualifiedJavaType));
@@ -92,10 +100,10 @@ public class VoPlugin extends FalseMethodPlugin {
             String baseShortNameFieldValue = baseShortNameField.get(fullyQualifiedJavaType).toString();
             String baseQualifiedNameFieldValue = baseQualifiedNameField.get(fullyQualifiedJavaType).toString();
 
-            baseShortNameField.set(topLevelClass.getType(), baseShortNameFieldValue+voSuffix);
-            baseQualifiedNameField.set(topLevelClass.getType(), baseQualifiedNameFieldValue+voSuffix);
+            baseShortNameField.set(topLevelClass.getType(), baseShortNameFieldValue + voSuffix);
+            baseQualifiedNameField.set(topLevelClass.getType(), baseQualifiedNameFieldValue + voSuffix);
 
-            SimpleDateFormat sdf1=new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
             String shortName = topLevelClass.getType().getShortName();
 
 //            topLevelClass.addFileCommentLine("/**");
@@ -107,13 +115,13 @@ public class VoPlugin extends FalseMethodPlugin {
             //给Dao接口添加文档注释
             topLevelClass.setVisibility(JavaVisibility.PUBLIC);
             topLevelClass.addJavaDocLine("/**");
-            topLevelClass.addJavaDocLine(" * 类注释，描述");
+            topLevelClass.addJavaDocLine(" * " + remark);
             topLevelClass.addJavaDocLine(" * ");
-            topLevelClass.addJavaDocLine(" * @author "+author);
-            topLevelClass.addJavaDocLine(" * @version \\$Id: "+shortName+".java,v 1.0 "+sdf1.format(new Date())+" "+author);
-            topLevelClass.addJavaDocLine(" * @date "+sdf1.format(new Date()));
+            topLevelClass.addJavaDocLine(" * @author " + author);
+            topLevelClass.addJavaDocLine(" * @version \\$Id: " + shortName + ".java,v 1.0 " + sdf1.format(new Date()) + " " + author);
+            topLevelClass.addJavaDocLine(" * @date " + sdf1.format(new Date()));
             topLevelClass.addJavaDocLine(" */");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);

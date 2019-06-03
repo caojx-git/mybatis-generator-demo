@@ -52,6 +52,11 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
      */
     private String author;
 
+    /**
+     * vo扩展名
+     */
+    private String voSuffix;
+
     public MyCommentGeneratorForVo() {
         super();
         properties = new Properties();
@@ -71,6 +76,7 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
         this.properties.putAll(properties);
         suppressDate = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_DATE));
         suppressAllComments = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS));
+        voSuffix = StringUtility.stringHasValue(this.properties.getProperty("voSuffix")) ? this.properties.getProperty("voSuffix") : "";
         author = this.properties.getProperty("author");
         if (!StringUtility.stringHasValue(author)) {
             author = System.getProperties().getProperty("user.name");
@@ -148,9 +154,9 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
         String column = introspectedColumn.getActualColumnName();
         if (introspectedColumn.getRemarks() != "" && introspectedColumn.getRemarks() != null) {
-            field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() + "\", name = \"" + field.getName() + "\", required = true)");
+            field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() + "\", name = \"" + field.getName() + "\")");
         } else {
-            field.addAnnotation("@ApiModelProperty(value = \"" + field.getName() + "\", name = \"" + field.getName() + "\",required = true)");
+            field.addAnnotation("@ApiModelProperty(value = \"" + field.getName() + "\", name = \"" + field.getName() + ")");
         }
     }
 
@@ -203,8 +209,8 @@ public class MyCommentGeneratorForVo implements CommentGenerator {
      */
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        String className = topLevelClass.getType().getShortName() + "VO对象";
-        String description = StringUtils.isEmpty(introspectedTable.getRemarks()) ? "" : introspectedTable.getRemarks() + "VO对象";
+        String className = topLevelClass.getType().getShortName() + voSuffix + "对象";
+        String description = StringUtils.isEmpty(introspectedTable.getRemarks()) ? "" : introspectedTable.getRemarks() + voSuffix + "对象";
 
         boolean generatorGetterAndSetter = Boolean.FALSE;
         if (!StringUtils.isEmpty(properties.getProperty("generatorGetterAndSetter")) && Boolean.TRUE.equals(Boolean.valueOf(properties.getProperty("generatorGetterAndSetter")))) {

@@ -119,6 +119,7 @@ public class StartUp {
     <columnOverride column="name" property="name" />
     <columnOverride column="age" property="age" />
     <columnOverride column="email" property="email" />
+    <columnOverride column="birthday" property="birthday" />
 </table>
 ```
 
@@ -132,7 +133,8 @@ create table user
   id    bigint      not null comment '主键ID' primary key,
   name  varchar(30) null comment '姓名',
   age   int         null comment '年龄',
-  email varchar(50) null comment '邮箱'
+  email varchar(50) null comment '邮箱',
+  birthday datetime null comment '生日'
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4  COMMENT='用户表';
 ```
 
@@ -162,6 +164,7 @@ public interface UserMapper extends com.baomidou.mybatisplus.core.mapper.BaseMap
 ```java
 package caojx.learn.model;
 
+import java.util.Date;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -172,8 +175,8 @@ import lombok.NoArgsConstructor;
  * 用户表实体
  * 
  * @author caojx
- * @version \$Id: User.java,v 1.0 2019/05/27 11:10 caojx
- * @date 2019/05/27 11:10
+ * @version \$Id: User.java,v 1.0 2019/06/03 14:23 caojx
+ * @date 2019/06/03 14:23
  */
 @Data
 @Builder
@@ -201,6 +204,11 @@ public class User implements java.io.Serializable {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
 }
 ```
 
@@ -214,9 +222,10 @@ public class User implements java.io.Serializable {
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, age, email
+    id, name, age, email, birthday
   </sql>
 </mapper>
 ```
@@ -234,11 +243,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 类注释，描述
+ * 用户表VO
  * 
  * @author caojx
- * @version \$Id: UserVO.java,v 1.0 2019/05/27 11:23 caojx
- * @date 2019/05/27 11:23
+ * @version \$Id: UserVO.java,v 1.0 2019/06/03 14:27 caojx
+ * @date 2019/06/03 14:27
  */
 @Data
 @Builder
@@ -246,17 +255,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @ApiModel(value="UserVO对象", description="用户表VO对象")
 public class UserVO implements java.io.Serializable {
-    @ApiModelProperty(value = "主键ID", name = "id", required = true)
+    @ApiModelProperty(value = "主键ID", name = "id")
     private Long id;
 
-    @ApiModelProperty(value = "姓名", name = "name", required = true)
+    @ApiModelProperty(value = "姓名", name = "name")
     private String name;
 
-    @ApiModelProperty(value = "年龄", name = "age", required = true)
+    @ApiModelProperty(value = "年龄", name = "age")
     private Integer age;
 
-    @ApiModelProperty(value = "邮箱", name = "email", required = true)
+    @ApiModelProperty(value = "邮箱", name = "email")
     private String email;
+
+    @ApiModelProperty(value = "生日", name = "birthday")
+    private String birthday;
 }
 ```
 
