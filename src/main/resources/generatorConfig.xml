@@ -15,8 +15,6 @@
         <!-- 格式化XML代码-->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
-        <property name="targetPackage" value="caojx.learn.mapper"/>
-
         <!-- 实现自定义的代码生成器插件 -->
         <plugin type="caojx.learn.plugin.MapperPlugin">
             <property name="targetProject" value="src/test/java"/>
