@@ -22,7 +22,16 @@
             <!-- 使用 tk.mybatis 请在pom.xml引入tk.mybatis依赖  -->
             <!--<property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
 
-            <!-- 使用 mybatis-plus 请在pom.xml引入mybatis-plus-boot-starter依赖  -->
+            <!--
+                使用 mybatis-plus 请在pom.xml引入mybatis-plus-boot-starter依赖
+
+                注意：mybatis-plus中自定义了主键生成策略，见https://mp.baomidou.com/guide/annotation.html#tableid
+                使用注解 @TableId(value = "id", type = IdType.AUTO)
+
+                tk.mybatis或jpa主键生成策略注解用
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+             -->
             <property name="daoSuperClass" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
 
 

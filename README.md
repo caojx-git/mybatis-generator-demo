@@ -67,7 +67,7 @@ public class StartUp {
 ### 1.2 主要配置项
 
 #### 1.代码生成插件配置
-将author改成自己的名称，不配置使用默认
+将author改成自己的名称，不配置使用默认，注意使用mybatis-plus中实体标注的主键生成策略注解使用 @TableId(value = "id", type = IdType.AUTO) 需要自行修改见https://mp.baomidou.com/guide/annotation.html#tableid
 ```xml
         <!-- 实现自定义的代码生成器插件 -->
         <plugin type="caojx.learn.plugin.MapperPlugin">
@@ -76,7 +76,16 @@ public class StartUp {
             <!-- 使用 tk.mybatis 请在pom.xml引入tk.mybatis依赖  -->
             <!--<property name="daoSuperClass" value="caojx.learn.util.BaseMapper"/>-->
 
-            <!-- 使用 mybatis-plus 请在pom.xml引入mybatis-plus-boot-starter依赖  -->
+            <!--
+                使用 mybatis-plus 请在pom.xml引入mybatis-plus-boot-starter依赖
+                
+                注意：mybatis-plus中自定义了主键生成策略，见https://mp.baomidou.com/guide/annotation.html#tableid
+                使用注解 @TableId(value = "id", type = IdType.AUTO)
+                
+                tk.mybatis或jpa主键生成策略注解用
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+            -->
             <property name="daoSuperClass" value="com.baomidou.mybatisplus.core.mapper.BaseMapper"/>
 
 
@@ -147,6 +156,8 @@ public interface UserMapper extends com.baomidou.mybatisplus.core.mapper.BaseMap
 ```
 
 #### 3.3. User.java
+
+注意使用mybatis-plus中实体标注的主键生成策略注解使用 @TableId(value = "id", type = IdType.AUTO) 需要自行修改见https://mp.baomidou.com/guide/annotation.html#tableid
 
 ```java
 package caojx.learn.model;
